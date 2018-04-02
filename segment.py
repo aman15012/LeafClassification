@@ -16,9 +16,11 @@ def segment(rgb):
     temp = cv2.filter2D(temp,-1,kernel)
     temp[temp>0.95] = 1
     temp[temp<=0.95] = 0 
-    return sobel(temp)
+    temp -= 1
+    temp = np.abs(temp)
+    return temp
 
-img = mpimg.imread('./Leaves/1001.jpg')     
+img = mpimg.imread('./Data/Leaves/1001.jpg')     
 gray_img = segment(img)    
 
 plt.imshow(gray_img, cmap=plt.cm.gray)

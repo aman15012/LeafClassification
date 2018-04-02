@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.misc import imread
 import matplotlib.image as mpimg
 from skimage.filters import sobel
+from skimage.measure import block_reduce
 
 # values from flavia paper
 def segment(rgb):
@@ -18,7 +19,7 @@ def segment(rgb):
     temp[temp<=0.95] = 0 
     temp -= 1
     temp = np.abs(temp)
-    return temp
+    return block_reduce(temp, block_size=(10,10), func=np.mean)
 
 img = mpimg.imread('./Data/Leaves/1001.jpg')     
 gray_img = segment(img)    

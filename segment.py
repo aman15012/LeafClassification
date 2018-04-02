@@ -16,7 +16,7 @@ def segment(rgb):
     temp = cv2.filter2D(temp,-1,kernel)
     temp[temp>0.95] = 1
     temp[temp<=0.95] = 0 
-    return temp
+    return sobel(temp)
 
 img = mpimg.imread('./Leaves/1001.jpg')     
 gray_img = segment(img)    
